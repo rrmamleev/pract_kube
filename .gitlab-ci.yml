@@ -25,16 +25,21 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 
+
 build:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:v1.9.0-debug
-    entrypoint: [""]
+  variables:
+    DOCKER_HOST: ""
+  services: []
+  image: docker:20.10.14
+  tags:
+  - docker
+
   script:
-    - /kaniko/executor
-      --context "${CI_PROJECT_DIR}"
-      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}"
+  - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  - docker build 
+      --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+
  
 
 
