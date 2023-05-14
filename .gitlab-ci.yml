@@ -61,11 +61,6 @@ test:docker-compose:   # This job runs in the test stage.
   #- name: docker:20.10-dind
   image: docker/compose:alpine-1.29.2
 
-  before_script:
-   - apk update
-   - apk add curl
-#  - pip install docker-compose
-
   script:
     - docker-compose up -d
     - sleep 20
@@ -95,6 +90,9 @@ docker:push:
   script:
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+  only:
+    - master
+
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
@@ -102,3 +100,6 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+  only:
+    - master
+
