@@ -75,6 +75,7 @@ unit-test-job:   # This job runs in the test stage.
 
   script:
     - docker-compose up -d
+    - sleep 20
     - chmod +x check.sh
     - /bin/sh check.sh
   after_script: 
