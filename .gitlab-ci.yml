@@ -68,6 +68,11 @@ unit-test-job:   # This job runs in the test stage.
   - name: docker:20.10-dind
   image: docker:20.10.14
 
+  before_script:
+  - apk update
+  - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
+  - pip install docker-compose
+
   script:
     - docker-compose up -d
 
