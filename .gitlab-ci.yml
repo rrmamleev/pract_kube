@@ -77,7 +77,7 @@ unit-test-job:   # This job runs in the test stage.
     - docker-compose up -d
     - docker-compose ps --services --filter "status=unhealthy" | grep -q -v . || exit 1
   after_script: 
-    - docker-compose down
+   # - docker-compose down
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
