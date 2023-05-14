@@ -64,14 +64,14 @@ build:
 
 unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
-  services:
-  - name: docker:20.10-dind
-  image: docker:20.10.14
+  #services:
+  #- name: docker:20.10-dind
+  image: docker pull docker/compose:alpine-1.29.2
 
-  before_script:
-  - apk update
-  - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
-  - pip install docker-compose
+#  before_script:
+#  - apk update
+#  - apk add py-pip python3-dev libffi-dev openssl-dev gcc libc-dev make
+#  - pip install docker-compose
 
   script:
     - docker-compose up -d
