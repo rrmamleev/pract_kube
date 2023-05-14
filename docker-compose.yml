@@ -10,7 +10,7 @@ services:
     environment:
       - REDIS_HOST=redis
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:5001 || exit 1"]
+      test: ["CMD-SHELL", "curl --fail http://localhost:5000 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 3
