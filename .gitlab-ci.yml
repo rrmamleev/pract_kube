@@ -38,6 +38,7 @@ stages:          # List of stages for jobs, and their order of execution
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   - docker build 
       --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .
+  
 
 
 
@@ -54,7 +55,8 @@ build:
   script:
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   - docker build 
-      --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .
+      --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} 
+      --tag ${CI_REGISTRY_IMAGE}:latest .
 
  
 
