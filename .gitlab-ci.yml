@@ -75,7 +75,7 @@ unit-test-job:   # This job runs in the test stage.
 
   script:
     - docker-compose up -d
-    - docker-compose ps --services --filter "status=unhealthy" | grep -q -v . || exit 1
+    - docker-compose ps --services --filter "status=running" | grep -q -v . || exit 1
   after_script: 
    # - docker-compose down
 
