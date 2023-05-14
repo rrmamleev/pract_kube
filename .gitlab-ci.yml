@@ -27,7 +27,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 .build_docker_image:
   variables:
-    DOCKER_HOST: tcp://docker:2375
+    DOCKER_HOST: tcp://localhost:2375
     DOCKER_TLS_CERTDIR: "/certs"
   services:
   - name: docker:20.10-dind
@@ -43,6 +43,10 @@ stages:          # List of stages for jobs, and their order of execution
 
 build:
   extends: .build_docker_image
+  variables:
+    DOCKER_HOST: ""
+  services: []
+
   tags:
   - docker
   before_script:
@@ -52,7 +56,6 @@ build:
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   - docker build 
       --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .
-  - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
 
  
 
