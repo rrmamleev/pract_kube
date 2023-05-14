@@ -43,10 +43,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 build:
   extends: .build_docker_image
-  variables:
-    DOCKER_HOST: ""
-  services: []
-
+ 
   tags:
   - docker
   before_script:
