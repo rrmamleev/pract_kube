@@ -80,6 +80,8 @@ cleanup:docker-compose:   # This job runs in the test stage.
   image: docker/compose:alpine-1.29.2
   script:
     - docker-compose down -v
+    #Удаляем с ранера старые образы нашего приложения
+    - docker images gitlab.s056568.edu.slurm.io:5050/s056568/application:* --format "{{.ID}}" |  tail -n +3 | xargs docker rmi -f
 
 
 docker:push: 
