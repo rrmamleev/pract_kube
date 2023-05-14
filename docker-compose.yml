@@ -2,7 +2,7 @@ version: "3"
 
 services:
   flask_app:
-    images: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} 
+    image: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} 
     ports:
       - "5001:5000"
     depends_on:
