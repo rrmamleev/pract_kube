@@ -43,7 +43,9 @@ stages:          # List of stages for jobs, and their order of execution
 
 build:
   extends: .build_docker_image
- 
+  variables:
+    DOCKER_HOST: ""
+    DOCKER_TLS_CERTDIR: "/certs"
   tags:
   - docker
   before_script:
