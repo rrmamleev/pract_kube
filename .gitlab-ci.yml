@@ -45,10 +45,8 @@ build:
   extends: .build_docker_image
   tags:
   - docker
-  except:
-  - tags
-    
-
+  before_script:
+  - docker info
 
   script:
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
