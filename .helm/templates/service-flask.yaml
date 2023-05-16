@@ -8,6 +8,7 @@ metadata:
     heritage: {{ .Release.Service }}
     component: {{ .Chart.Name }}-app
   name: {{ .Chart.Name }}-service
+specs:
   ports:
   - name: http
     port: {{ .Values.service.port }}

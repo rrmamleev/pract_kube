@@ -8,6 +8,7 @@ metadata:
     heritage: {{ .Release.Service }}
     component: {{ .Values.redis.name }}
   name: {{ .Values.redis.name }}-service
+specs:
   ports:
   - name: http
     port: {{ .Values.service.port }}
