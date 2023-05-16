@@ -1,0 +1,4 @@
+node_labels:
+  node-role.kubernetes.io/ingress: "ingress-1.s056568.slurm.io"
+node_taints:
+  - "node-role.kubernetes.io/ingress=:NoSchedule"

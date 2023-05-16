@@ -1,0 +1,8 @@
+description: Flask app Helm chart for Kubernetes.
+maintainers:
+- email: rrmamleev@yandex.ru
+  name: Rifat Mamleev
+name: flask
+sources:
+- https://gitlab.s056568.edu.slurm.io/s056568/application
+version: 1.0.0

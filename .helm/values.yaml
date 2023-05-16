@@ -1,0 +1,39 @@
+# This is a YAML-formatted file.
+
+image: gitlab.s056568.edu.slurm.io/s056568/application
+imageTag: main.1
+imagePullSecret: flask-app-gitlab-registry
+
+
+
+# This variables is taken from secret
+# Value is secret name where variable value can be found
+# Key in secret equals lowercased variable name with "_" replaced by "-"
+# The secret should be created manually
+
+
+# Resources for app. Limits is the maximum number of resources that app cas use.
+# And requests is resources that will be granted to the app at start time.
+replicas: 1
+
+redis:
+  name: redis
+  port: 6379
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+service:
+  port: 5000
+
+ingress:
+  host: flask.s056568.edu.slurm.io
+  secretName: my-tls
+
+pvc:
+  storage: 2Gi
