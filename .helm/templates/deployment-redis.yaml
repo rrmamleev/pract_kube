@@ -10,6 +10,9 @@ metadata:
 spec:
   progressDeadlineSeconds: 180
   replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.redis.name }}
   strategy:
     rollingUpdate:
       maxSurge: 1
