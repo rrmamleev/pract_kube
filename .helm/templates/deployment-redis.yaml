@@ -68,9 +68,10 @@ spec:
           mountPath: /data
       
       volumes:
-        name: data
+      - name: data
         persistentVolumeClaim:
-          claimName: pv1
+          claimName: {{ .Values.redis.pvc }}
+
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 20
