@@ -42,25 +42,6 @@ spec:
         {{- end }}
         image: redis:alpine
         name: {{ .Values.redis.name }}
-        readinessProbe:
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: {{ .Values.redis.port }}
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 3
-          timeoutSeconds: 5
-        livenessProbe:
-          initialDelaySeconds: 90
-          failureThreshold: 3
-          httpGet:
-            path: /
-            port: {{ .Values.redis.port }}
-            scheme: HTTP
-          periodSeconds: 10
-          successThreshold: 3
-          timeoutSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         volumeMounts:
