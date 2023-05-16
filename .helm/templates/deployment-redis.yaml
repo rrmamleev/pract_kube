@@ -5,17 +5,11 @@ metadata:
     app: {{ .Chart.Name }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
     component: {{ .Values.redis.name }}
   name: {{ .Values.redis.name }}
 spec:
   progressDeadlineSeconds: 180
   replicas: {{ .Values.replicas }}
-  selector:
-    matchLabels:
-      app: {{ .Chart.Name }}
-      release: {{ .Release.Name }}
-      component: {{ .Values.redis.name }}
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -45,10 +39,6 @@ spec:
         {{- end }}
         image: redis:alpine
         name: {{ .Values.redis.name }}
-        ports:
-        - containerPort: {{ .Values.redis.port }}
-          name: http
-          protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:

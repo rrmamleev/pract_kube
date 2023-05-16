@@ -5,17 +5,11 @@ metadata:
     app: {{ .Chart.Name }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
     component: {{ .Chart.Name }}-app
   name: {{ .Release.Name }}
 spec:
   progressDeadlineSeconds: 180
   replicas: {{ .Values.replicas }}
-  selector:
-    matchLabels:
-      app: {{ .Chart.Name }}
-      release: {{ .Release.Name }}
-      component: {{ .Chart.Name }}-app
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -46,10 +40,6 @@ spec:
         image: {{ .Values.image }}:{{ .Values.imageTag}}
         imagePullPolicy: IfNotPresent
         name: {{ .Chart.Name }}-app
-        ports:
-        - containerPort: {{ .Values.service.port }}
-          name: http
-          protocol: TCP
         readinessProbe:
           failureThreshold: 30
           httpGet:
