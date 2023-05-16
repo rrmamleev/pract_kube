@@ -63,13 +63,14 @@ spec:
           timeoutSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 12 }}
-        volumes:
-          name: data
-          persistentVolumeClaim:
-            claimName: {{ .Values.redis.name }}-pvc
-      volumeMounts:
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      
+      volumes:
         name: data
-        mountPath: /data
+        persistentVolumeClaim:
+          claimName: {{ .Values.redis.name }}-pvc
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 20
