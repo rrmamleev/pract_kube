@@ -26,6 +26,7 @@ spec:
       labels:
         app: {{ .Chart.Name }}
         release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
         component: {{ .Values.redis.name }}
     spec:
       containers:
