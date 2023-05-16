@@ -13,7 +13,11 @@ spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.redis.name }}
+      #app: {{ .Values.redis.name }}
+      app: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      component: {{ .Values.redis.name }}
   strategy:
     rollingUpdate:
       maxSurge: 1
