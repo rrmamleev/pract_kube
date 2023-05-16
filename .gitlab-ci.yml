@@ -114,7 +114,7 @@ deploy:
         --timeout 300s
         --atomic
         --debug
-        --namespace $CI_ENVIRONMENT_NAMESPACEKUBE-$CI_ENVIRONMENT_NAME
+        --namespace $NS_KUBE-$CI_ENVIRONMENT_NAME
   only:
     - main
 
