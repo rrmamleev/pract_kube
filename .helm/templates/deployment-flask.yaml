@@ -12,7 +12,7 @@ spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.flask.name }}
+      app: {{ .Values.service.name }}
   strategy:
     rollingUpdate:
       maxSurge: 1

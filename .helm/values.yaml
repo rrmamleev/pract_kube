@@ -30,6 +30,7 @@ resources:
 
 service:
   port: 5000
+  name: flask
 
 ingress:
   host: flask.s056568.edu.slurm.io
