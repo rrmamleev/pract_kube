@@ -51,7 +51,7 @@ spec:
             port: {{ .Values.service.port }}
             scheme: HTTP
           periodSeconds: 10
-          successThreshold: 3
+          successThreshold: 1
           timeoutSeconds: 5
         livenessProbe:
           initialDelaySeconds: 90
@@ -61,7 +61,7 @@ spec:
             port: {{ .Values.service.port }}
             scheme: HTTP
           periodSeconds: 10
-          successThreshold: 3
+          successThreshold: 1
           timeoutSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 12 }}
