@@ -15,6 +15,7 @@ spec:
     matchLabels:
       #app: {{ .Values.redis.name }}
       app: {{ .Chart.Name }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
       release: {{ .Release.Name }}
       heritage: {{ .Release.Service }}
       component: {{ .Values.redis.name }}
@@ -29,6 +30,7 @@ spec:
       creationTimestamp: null
       labels:
         app: {{ .Chart.Name }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         release: {{ .Release.Name }}
         heritage: {{ .Release.Service }}
         component: {{ .Values.redis.name }}
