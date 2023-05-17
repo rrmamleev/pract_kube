@@ -11,9 +11,9 @@ metadata:
 spec:
   ports:
   - name: http
-    port: {{ .Values.service.port }}
+    port: {{ .Values.redis.port }}
     protocol: TCP
-    targetPort: {{ .Values.service.port }}
+    targetPort: {{ .Values.redis.port }}
   selector:
     app: {{ .Chart.Name }}
     release: {{ .Release.Name }}
