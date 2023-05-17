@@ -5,16 +5,6 @@ imageTag: application.latest
 #imagePullSecret: flask-app-gitlab-registry
 imagePullSecret: registry-credentials
 
-
-
-# This variables is taken from secret
-# Value is secret name where variable value can be found
-# Key in secret equals lowercased variable name with "_" replaced by "-"
-# The secret should be created manually
-
-
-# Resources for app. Limits is the maximum number of resources that app cas use.
-# And requests is resources that will be granted to the app at start time.
 replicas: 1
 
 redis:
