@@ -3,7 +3,7 @@
 image: gitlab.s056568.edu.slurm.io/s056568/application
 imageTag: application.latest
 #imagePullSecret: flask-app-gitlab-registry
-imagePullSecret: gitlab
+imagePullSecret: registry-credentials
 
 
 
