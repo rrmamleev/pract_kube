@@ -70,10 +70,11 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecret }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 20
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecret }}
+      
