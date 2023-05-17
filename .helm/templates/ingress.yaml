@@ -11,13 +11,16 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: {{ .Chart.Name }}-ingress
 spec:
+  ingressClassName: nginx
   rules:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
-      - backend:
-          serviceName: {{ .Chart.Name }}-service
-          servicePort: {{ .Values.service.port }}
+      - path: /
+        backend:
+          service: {{ .Chart.Name }}-service
+          port: 
+            number: {{ .Values.service.port }}
   tls:
   - hosts:
     - {{ .Values.ingress.host }}
