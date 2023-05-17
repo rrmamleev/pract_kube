@@ -59,7 +59,7 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: {{ .Values.redis.name }}-pvc
+          claimName: pv1
 
       dnsPolicy: ClusterFirst
       restartPolicy: Always
