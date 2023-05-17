@@ -2,7 +2,7 @@
 
 image: gitlab.s056568.edu.slurm.io/s056568/application
 imageTag: main.1
-imagePullSecret: flask-app-gitlab-registry
+imagePullSecret: gitlab
 
 
 
