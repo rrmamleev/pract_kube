@@ -53,7 +53,11 @@ docker:build:
     DOCKER_TLS_CERTDIR: "/certs"
   tags:
   - docker
-
+  script:
+  - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  - docker build 
+      --tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} 
+      --tag ${CI_REGISTRY_IMAGE}:latest .
 
 test:docker-compose:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
@@ -89,7 +93,8 @@ docker:push:
   - docker
   script:
   - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
-  - docker push $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID
+  #- docker push $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID
+  - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
   only:
     - main
 
@@ -106,7 +111,7 @@ deploy:
     - kubectl config use-context ci
     - helm upgrade --install $CI_PROJECT_PATH_SLUG .helm
         --set image=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-        --set imageTag=$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID
+        --set imageTag=$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
         --wait
         --timeout 300s
         --atomic
