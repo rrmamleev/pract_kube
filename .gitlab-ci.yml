@@ -110,7 +110,7 @@ deploy:
     - kubectl config use-context ci
     - helm upgrade --install $CI_PROJECT_PATH_SLUG .helm
         --set image=$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-        --set imageTag=$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID
+        --set imageTag=${CI_COMMIT_SHORT_SHA}
         --wait
         --timeout 300s
         --atomic
