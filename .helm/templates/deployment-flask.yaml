@@ -35,6 +35,8 @@ spec:
         heritage: {{ .Release.Service }}
         component: {{ .Chart.Name }}-app
     spec:
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecret }}
       containers:
       - env:
         {{- range $key, $val := .Values.env }}
@@ -70,8 +72,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
-      imagePullSecrets:
-      - name: {{ .Values.imagePullSecret }}
+      
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       dnsPolicy: ClusterFirst
